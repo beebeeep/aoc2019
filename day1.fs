@@ -2,8 +2,9 @@
 100 constant buf-size
 create buf buf-size allot 
 
-: fuel-for-module  ( n -- n )
+: fuel-for-module ( n -- n ) recursive 
  3 / 2 -
+ dup 0< if drop 0 else dup fuel-for-module + endif 
 ; 
 
 : read-num-from-file ( wfileid -- n flag )
